@@ -1046,9 +1046,13 @@ bot.on("message", async (ctx) => {
     db.saveFile(fileDetails);
 
     //Sharing public link for saved files
-    ctx.reply(
-      `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetails.shortid}`
-    );
+    if (ctx.message.text) {
+      ctx.reply("Cannot store text messages for now");
+    } else {
+      ctx.reply(
+        `https://t.me/${process.env.BOTUSERNAME}?start=${fileDetails.shortid}`
+      );
+    }
   }
 });
 
